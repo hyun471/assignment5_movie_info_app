@@ -1,3 +1,4 @@
+import 'package:assignment5_movie_info_app/pages/detail/detail_page.dart';
 import 'package:assignment5_movie_info_app/pages/home/views/movie_list.dart';
 import 'package:assignment5_movie_info_app/pages/home/views/thumbnail_box.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +19,22 @@ class HomePage extends StatelessWidget {
                 // 가장 인기있는 영화
                 Text('가장 인기있는'),
                 SizedBox(height: 5),
-                Container(
-                  width: double.infinity,
-                  height: 500,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.amber,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailPage(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 500,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.amber,
+                    ),
                   ),
                 ),
                 // 현재 상영중인 영화 리스트
@@ -43,14 +54,13 @@ class HomePage extends StatelessWidget {
                   height: thumbnailHeight,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 5,
+                    itemCount: 10,
                     itemBuilder: (context, index) {
                       return Row(
                         children: [
                           SizedBox(
                             width: thumbnailWidth + 20,
                             child: Stack(
-                              clipBehavior: Clip.none,
                               children: [
                                 Align(
                                   alignment:
