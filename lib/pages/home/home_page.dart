@@ -1,3 +1,4 @@
+import 'package:assignment5_movie_info_app/pages/home/views/movie_list.dart';
 import 'package:assignment5_movie_info_app/pages/home/views/thumbnail_box.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ class HomePage extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // 가장 인기있는 영화
                 Text('가장 인기있는'),
                 SizedBox(height: 5),
                 Container(
@@ -24,30 +26,15 @@ class HomePage extends StatelessWidget {
                     color: Colors.amber,
                   ),
                 ),
+                // 현재 상영중인 영화 리스트
                 SizedBox(height: 5),
                 Text('현재 상영중'),
                 SizedBox(height: 5),
-                SizedBox(
-                  width: double.infinity,
-                  height: thumbnailHeight,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          ThumbnailBox(
-                            thumbnailHeight: thumbnailHeight,
-                            thumbnailWidth: thumbnailWidth,
-                          ),
-                          index != 4
-                              ? SizedBox(width: 10)
-                              : SizedBox.shrink(),
-                        ],
-                      );
-                    },
-                  ),
+                MovieList(
+                  thumbnailHeight: thumbnailHeight,
+                  thumbnailWidth: thumbnailWidth,
                 ),
+                // 인기 있는 영화 리스트
                 SizedBox(height: 5),
                 Text('인기 순'),
                 SizedBox(height: 5),
@@ -98,53 +85,20 @@ class HomePage extends StatelessWidget {
                     },
                   ),
                 ),
+                // 평정 높은 영화 리스트
                 SizedBox(height: 5),
                 Text('평점 높은순'),
-                SizedBox(height: 5),
-                SizedBox(
-                  width: double.infinity,
-                  height: thumbnailHeight,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          ThumbnailBox(
-                            thumbnailHeight: thumbnailHeight,
-                            thumbnailWidth: thumbnailWidth,
-                          ),
-                          index != 4
-                              ? SizedBox(width: 10)
-                              : SizedBox.shrink(),
-                        ],
-                      );
-                    },
-                  ),
+                MovieList(
+                  thumbnailHeight: thumbnailHeight,
+                  thumbnailWidth: thumbnailWidth,
                 ),
+                // 개봉 예정인 영화 리스트
                 SizedBox(height: 5),
                 Text('개봉예정'),
                 SizedBox(height: 5),
-                SizedBox(
-                  width: double.infinity,
-                  height: thumbnailHeight,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          ThumbnailBox(
-                            thumbnailHeight: thumbnailHeight,
-                            thumbnailWidth: thumbnailWidth,
-                          ),
-                          index != 4
-                              ? SizedBox(width: 10)
-                              : SizedBox.shrink(),
-                        ],
-                      );
-                    },
-                  ),
+                MovieList(
+                  thumbnailHeight: thumbnailHeight,
+                  thumbnailWidth: thumbnailWidth,
                 ),
               ],
             ),
