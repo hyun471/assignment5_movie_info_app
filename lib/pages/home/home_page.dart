@@ -21,6 +21,7 @@ class HomePage extends StatelessWidget {
                 SizedBox(height: 5),
                 GestureDetector(
                   onTap: () {
+                    // TODO 나중에 수정
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -28,12 +29,15 @@ class HomePage extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Container(
-                    width: double.infinity,
-                    height: 500,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.amber,
+                  child: Hero(
+                    tag: 'movie-image',
+                    child: Container(
+                      width: double.infinity,
+                      height: 500,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.amber,
+                      ),
                     ),
                   ),
                 ),

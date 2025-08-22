@@ -10,12 +10,15 @@ class DetailPage extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: [
-            Container(
-              width: double.infinity,
-              height: 400,
-              decoration: BoxDecoration(
-                color: Colors.amber,
-                borderRadius: BorderRadius.circular(12),
+            Hero(
+              tag: 'movie-image',
+              child: Container(
+                width: double.infinity,
+                height: 400,
+                decoration: BoxDecoration(
+                  color: Colors.amber,
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
             ),
             SizedBox(height: 10),
