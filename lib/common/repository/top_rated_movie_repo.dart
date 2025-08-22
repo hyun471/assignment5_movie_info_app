@@ -5,7 +5,7 @@ import 'package:assignment5_movie_info_app/common/models/secret.dart';
 import 'package:http/http.dart';
 
 class TopRatedMovieRepo {
-  Future<List<MoivePosterModel>?> searchTopRatedMovie() async {
+  Future<List<MoivePosterModel>?> getTopRatedMovie() async {
     String myKey = TMDBKey;
     final client = Client();
     final response = await client.get(

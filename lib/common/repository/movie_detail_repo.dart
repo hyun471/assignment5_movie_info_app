@@ -85,7 +85,7 @@ import 'package:assignment5_movie_info_app/common/models/secret.dart';
 import 'package:http/http.dart';
 
 class MovieDetailRepo {
-  Future<MovieDetailModel?> searchDetailMovie(String id) async {
+  Future<MovieDetailModel?> getDetailMovie(String id) async {
     String myKey = TMDBKey;
     final client = Client();
     final response = await client.get(

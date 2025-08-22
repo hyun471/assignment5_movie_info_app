@@ -33,7 +33,7 @@ import 'package:http/http.dart';
 //     },
 
 class NowPlayingMoiveRepo {
-  Future<List<MoivePosterModel>?> searchNowPlayingMovie() async {
+  Future<List<MoivePosterModel>?> getNowPlayingMovie() async {
     String myKey = TMDBKey;
     final client = Client();
     final response = await client.get(
