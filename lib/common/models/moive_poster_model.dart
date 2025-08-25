@@ -27,7 +27,10 @@ class MoivePosterModel {
   final String posterPath;
 
   MoivePosterModel.fromJson(Map<String, dynamic> map)
-    : this(id: map['id'], posterPath: map['poster_path']);
+    : this(
+        id: map['id'].toString(),
+        posterPath: map['poster_path'],
+      );
 
   Map<String, dynamic> toJson() {
     return {'id': id, 'poster_path': posterPath};

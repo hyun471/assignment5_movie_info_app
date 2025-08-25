@@ -108,19 +108,19 @@ class MovieDetailModel {
 
   MovieDetailModel.fromJson(Map<String, dynamic> map)
     : this(
-        id: map['id'],
+        id: map['id'].toString(),
         title: map['title'],
         tagLine: map['tagline'],
         releaseDate: map['release_date'],
-        runTime: map['runtime'],
+        runTime: map['runtime'].toString(),
         genres: List<String>.from(
           (map['genres'] as List).map((g) => g['name']),
         ),
         overView: map['overview'],
-        voteAverage: map['vote_average'],
-        voteCount: map['vote_count'],
-        popularity: map['popularity'],
-        revenue: map['revenue'],
+        voteAverage: map['vote_average'].toString(),
+        voteCount: map['vote_count'].toString(),
+        popularity: map['popularity'].toString(),
+        revenue: map['revenue'].toString(),
         companies: List<String>.from(
           (map['production_companies'] as List).map(
             (g) => g['logo_path'],

@@ -1,3 +1,4 @@
+import 'package:assignment5_movie_info_app/common/models/moive_poster_model.dart';
 import 'package:assignment5_movie_info_app/pages/detail/detail_page.dart';
 import 'package:flutter/material.dart';
 
@@ -5,9 +6,11 @@ class ThumbnailBox extends StatelessWidget {
   ThumbnailBox({
     required this.thumbnailHeight,
     required this.thumbnailWidth,
+    required this.state,
   });
-  double thumbnailHeight;
-  double thumbnailWidth;
+  final double thumbnailHeight;
+  final double thumbnailWidth;
+  final MoivePosterModel state;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -18,12 +21,18 @@ class ThumbnailBox extends StatelessWidget {
           MaterialPageRoute(builder: (context) => DetailPage()),
         );
       },
-      child: Container(
-        width: thumbnailWidth,
-        height: thumbnailHeight,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.blueAccent,
+      child: Hero(
+        tag: state.id,
+        child: SizedBox(
+          width: thumbnailWidth,
+          height: thumbnailHeight,
+
+          child: ClipRRect(
+            borderRadius: BorderRadiusGeometry.circular(12),
+            child: Image.network(
+              'https://image.tmdb.org/t/p/w300${state.posterPath}',
+            ),
+          ),
         ),
       ),
     );
