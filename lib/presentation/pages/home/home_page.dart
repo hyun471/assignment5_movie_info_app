@@ -1,11 +1,13 @@
-import 'package:assignment5_movie_info_app/pages/home/view_model/home_view_model.dart';
-import 'package:assignment5_movie_info_app/pages/home/views/most_popular_movie.dart';
-import 'package:assignment5_movie_info_app/pages/home/views/movie_list.dart';
-import 'package:assignment5_movie_info_app/pages/home/views/thumbnail_box.dart';
+import 'package:assignment5_movie_info_app/presentation/pages/home/view_model/home_view_model.dart';
+import 'package:assignment5_movie_info_app/presentation/pages/home/views/most_popular_movie.dart';
+import 'package:assignment5_movie_info_app/presentation/pages/home/views/movie_list.dart';
+import 'package:assignment5_movie_info_app/presentation/pages/home/views/thumbnail_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomePage extends ConsumerStatefulWidget {
+  const HomePage({super.key});
+
   @override
   ConsumerState<HomePage> createState() => _HomePageState();
 }
@@ -13,6 +15,30 @@ class HomePage extends ConsumerStatefulWidget {
 class _HomePageState extends ConsumerState<HomePage> {
   double thumbnailHeight = 150;
   double thumbnailWidth = 100;
+  ScrollController nowPlayingController = ScrollController();
+  ScrollController popularController = ScrollController();
+  ScrollController topRatedController = ScrollController();
+  ScrollController upComingController = ScrollController();
+  bool isFetching = false;
+
+  void fetchMore() async {
+    if (isFetching) {
+      return;
+    }
+    isFetching = true;
+    await ref
+        .read(homeViewModelProvider.notifier)
+        .fetchNowPlaying();
+  }
+
+  @override
+  void dispose() {
+    nowPlayingController.dispose();
+    popularController.dispose();
+    topRatedController.dispose();
+    upComingController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +70,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                         thumbnailWidth: thumbnailWidth,
                         state: state.nowPlaying,
                         category: '가장 인기있는',
+                        scrollController: nowPlayingController,
                       ),
                       // 인기 있는 영화 리스트
                       SizedBox(height: 10),
@@ -54,6 +81,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                         height: thumbnailHeight,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
+                          controller: popularController,
                           itemCount: state.popular.length,
                           itemBuilder: (context, index) {
                             return Row(
@@ -107,6 +135,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                         thumbnailWidth: thumbnailWidth,
                         state: state.topRated,
                         category: '평점 높은순',
+                        scrollController: topRatedController,
                       ),
                       // 개봉 예정인 영화 리스트
                       SizedBox(height: 10),
@@ -117,6 +146,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                         thumbnailWidth: thumbnailWidth,
                         state: state.upComing,
                         category: '개봉예정',
+                        scrollController: upComingController,
                       ),
                     ],
                   ),

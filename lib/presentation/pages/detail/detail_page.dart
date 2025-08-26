@@ -1,22 +1,26 @@
-import 'package:assignment5_movie_info_app/pages/detail/view_model/detail_view_model.dart';
-import 'package:assignment5_movie_info_app/pages/detail/views/box_office_info.dart';
-import 'package:assignment5_movie_info_app/pages/detail/views/category.dart';
-import 'package:assignment5_movie_info_app/pages/detail/views/line.dart';
+import 'package:assignment5_movie_info_app/presentation/pages/detail/view_model/detail_view_model.dart';
+import 'package:assignment5_movie_info_app/presentation/pages/detail/views/box_office_info.dart';
+import 'package:assignment5_movie_info_app/presentation/pages/detail/views/category.dart';
+import 'package:assignment5_movie_info_app/presentation/pages/detail/views/line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+// ignore: must_be_immutable
 class DetailPage extends ConsumerWidget {
   String tag;
   String id;
   String posterPath;
   DetailPage({
+    super.key,
     required this.tag,
     required this.id,
     required this.posterPath,
   });
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(detailViewModelProvider(id));
+    final state = ref.watch(
+      detailViewModelProvider(int.parse(id)),
+    );
     return Scaffold(
       body: SafeArea(
         child: GestureDetector(
@@ -71,15 +75,15 @@ class DetailPage extends ConsumerWidget {
                       Text(state.movieDetail!.tagLine),
                       Text('${state.movieDetail!.runTime} 분'),
                       SizedBox(height: 10),
-                      line(),
+                      Line(),
                       Category(
                         genres: state.movieDetail!.genres,
                       ),
-                      line(),
+                      Line(),
                       SizedBox(height: 5),
                       Text(state.movieDetail!.overView),
                       SizedBox(height: 5),
-                      line(),
+                      Line(),
                       SizedBox(height: 20),
                       Text(
                         '흥행정보',

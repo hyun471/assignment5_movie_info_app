@@ -1,29 +1,37 @@
-import 'package:assignment5_movie_info_app/common/models/moive_poster_model.dart';
-import 'package:assignment5_movie_info_app/pages/detail/detail_page.dart';
+import 'package:assignment5_movie_info_app/domain/entity/movie_poster.dart';
+import 'package:assignment5_movie_info_app/presentation/pages/detail/detail_page.dart';
 import 'package:flutter/material.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
-class MostPopular extends StatefulWidget {
-  const MostPopular({super.key, required this.state});
-
-  final MoivePosterModel state;
+class ThumbnailBox extends StatefulWidget {
+  const ThumbnailBox({
+    super.key,
+    required this.thumbnailHeight,
+    required this.thumbnailWidth,
+    required this.state,
+    required this.categroy,
+    required this.index,
+  });
+  final double thumbnailHeight;
+  final double thumbnailWidth;
+  final MoivePoster state;
+  final String categroy;
+  final int index;
 
   @override
-  State<MostPopular> createState() => _MostPopularState();
+  State<ThumbnailBox> createState() => _ThumbnailBoxState();
 }
 
-class _MostPopularState extends State<MostPopular> {
+class _ThumbnailBoxState extends State<ThumbnailBox> {
   @override
   Widget build(BuildContext context) {
-    bool isLoading = true;
+    String tag = '${widget.categroy}: ${widget.index}';
     return GestureDetector(
       onTap: () {
-        // TODO 나중에 수정
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => DetailPage(
-              tag: '가장 인기있는',
+              tag: tag,
               id: widget.state.id,
               posterPath:
                   'https://image.tmdb.org/t/p/w300${widget.state.posterPath}',
@@ -32,15 +40,15 @@ class _MostPopularState extends State<MostPopular> {
         );
       },
       child: Hero(
-        tag: '가장 인기있는',
+        tag: tag,
         child: SizedBox(
-          width: double.infinity,
-          height: 560,
+          width: widget.thumbnailWidth,
+          height: widget.thumbnailHeight,
+
           child: ClipRRect(
             borderRadius: BorderRadiusGeometry.circular(12),
             child: Image.network(
               'https://image.tmdb.org/t/p/w300${widget.state.posterPath}',
-              fit: BoxFit.cover,
               // frameBuilder:
               //     (
               //       context,

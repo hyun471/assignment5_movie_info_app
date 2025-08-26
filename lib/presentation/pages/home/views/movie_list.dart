@@ -1,18 +1,21 @@
-import 'package:assignment5_movie_info_app/common/models/moive_poster_model.dart';
-import 'package:assignment5_movie_info_app/pages/home/views/thumbnail_box.dart';
+import 'package:assignment5_movie_info_app/domain/entity/movie_poster.dart';
+import 'package:assignment5_movie_info_app/presentation/pages/home/views/thumbnail_box.dart';
 import 'package:flutter/material.dart';
 
 class MovieList extends StatelessWidget {
-  MovieList({
+  const MovieList({
+    super.key,
     required this.thumbnailHeight,
     required this.thumbnailWidth,
     required this.state,
     required this.category,
+    required this.scrollController,
   });
   final double thumbnailHeight;
   final double thumbnailWidth;
-  final List<MoivePosterModel> state;
+  final List<MoivePoster> state;
   final String category;
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +24,8 @@ class MovieList extends StatelessWidget {
       height: thumbnailHeight,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
+        controller: scrollController,
+
         itemCount: state.length,
         itemBuilder: (context, index) {
           final movie = state[index];

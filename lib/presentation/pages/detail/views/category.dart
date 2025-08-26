@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Category extends StatelessWidget {
   List<String> genres;
   Category({super.key, required this.genres});
@@ -31,9 +32,10 @@ class Category extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class CategoryBox extends StatelessWidget {
   String genres;
-  CategoryBox({required this.genres});
+  CategoryBox({super.key, required this.genres});
 
   @override
   Widget build(BuildContext context) {

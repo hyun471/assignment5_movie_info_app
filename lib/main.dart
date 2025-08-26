@@ -1,4 +1,4 @@
-import 'package:assignment5_movie_info_app/pages/home/home_page.dart';
+import 'package:assignment5_movie_info_app/presentation/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

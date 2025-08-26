@@ -1,8 +1,9 @@
-import 'package:assignment5_movie_info_app/common/models/movie_detail_model.dart';
+import 'package:assignment5_movie_info_app/domain/entity/movie_detail.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class BoxOfficeInfo extends StatelessWidget {
-  MovieDetailModel state;
+  MovieDetail state;
   BoxOfficeInfo({super.key, required this.state});
 
   @override
@@ -28,6 +29,7 @@ class BoxOfficeInfo extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class Box extends StatelessWidget {
   String score;
   String officeInfo;
