@@ -14,9 +14,13 @@ class BoxOfficeInfo extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: [
           Box(officeInfo: state.voteAverage, score: '평점'),
+          SizedBox(width: 10),
           Box(officeInfo: state.voteCount, score: '평점투표수'),
+          SizedBox(width: 10),
           Box(officeInfo: state.popularity, score: '인기점수'),
+          SizedBox(width: 10),
           Box(officeInfo: state.budget, score: '예산'),
+          SizedBox(width: 10),
           Box(officeInfo: state.revenue, score: '수익'),
         ],
       ),
@@ -39,7 +43,7 @@ class Box extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20),
       height: 70,
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black45, width: 2),
+        border: Border.all(color: Colors.grey[800]!, width: 2),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(

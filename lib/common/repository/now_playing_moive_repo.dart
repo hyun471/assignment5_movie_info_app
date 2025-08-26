@@ -33,6 +33,8 @@ import 'package:http/http.dart';
 //     },
 
 class NowPlayingMoiveRepo {
+  List<MoivePosterModel> nowPlaying = [];
+
   Future<List<MoivePosterModel>?> getNowPlayingMovie() async {
     String myKey = TMDBKey;
     final client = Client();
@@ -49,7 +51,8 @@ class NowPlayingMoiveRepo {
         return MoivePosterModel.fromJson(e);
       });
       final movieList = iterable.toList();
-      return movieList;
+      nowPlaying.addAll(movieList);
+      return nowPlaying;
     }
     print(response.statusCode);
     return [];

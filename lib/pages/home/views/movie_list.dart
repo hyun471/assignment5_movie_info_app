@@ -23,12 +23,13 @@ class MovieList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: state.length,
         itemBuilder: (context, index) {
+          final movie = state[index];
           return Row(
             children: [
               ThumbnailBox(
                 thumbnailHeight: thumbnailHeight,
                 thumbnailWidth: thumbnailWidth,
-                state: state[index],
+                state: movie,
                 categroy: category,
                 index: index,
               ),

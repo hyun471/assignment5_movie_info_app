@@ -8,20 +8,23 @@ class Category extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: 5),
-        // ListView.builder(
-        //   scrollDirection: Axis.horizontal,
-        //   itemCount: genres.length,
-        //   itemBuilder: (context, index) {
-        //     return Row(
-        //       children: [
-        //         CategoryBox(genres: genres[index]),
-        //         index == genres.length - 1
-        //             ? SizedBox.shrink()
-        //             : SizedBox(width: 3),
-        //       ],
-        //     );
-        //   },
-        // ),
+        SizedBox(
+          height: 40,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: genres.length,
+            itemBuilder: (context, index) {
+              return Row(
+                children: [
+                  CategoryBox(genres: genres[index]),
+                  index == genres.length - 1
+                      ? SizedBox.shrink()
+                      : SizedBox(width: 5),
+                ],
+              );
+            },
+          ),
+        ),
         SizedBox(height: 5),
       ],
     );
@@ -44,7 +47,7 @@ class CategoryBox extends StatelessWidget {
       child: Center(
         child: Text(
           genres,
-          style: TextStyle(color: Colors.indigoAccent),
+          style: TextStyle(color: Colors.blueAccent),
         ),
       ),
     );
