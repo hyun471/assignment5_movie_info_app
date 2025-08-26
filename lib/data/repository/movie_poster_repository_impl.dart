@@ -9,9 +9,10 @@ class MoviePosterRepositoryImpl
   final MovieListDataSource _movieListDataSource;
 
   @override
-  Future<List<MoivePoster>> getNowPlayingMovie() async {
-    final result = await _movieListDataSource
-        .getNowPlayingMovie();
+  Future<List<MoivePoster>> getNowPlayingMovie(int page) async {
+    final result = await _movieListDataSource.getNowPlayingMovie(
+      page,
+    );
     return result!
         .map(
           (e) => MoivePoster(
@@ -23,8 +24,10 @@ class MoviePosterRepositoryImpl
   }
 
   @override
-  Future<List<MoivePoster>> getPopularMovie() async {
-    final result = await _movieListDataSource.getPopularMovie();
+  Future<List<MoivePoster>> getPopularMovie(int page) async {
+    final result = await _movieListDataSource.getPopularMovie(
+      page,
+    );
     return result!
         .map(
           (e) => MoivePoster(
@@ -36,8 +39,10 @@ class MoviePosterRepositoryImpl
   }
 
   @override
-  Future<List<MoivePoster>> getTopRatedMovie() async {
-    final result = await _movieListDataSource.getTopRatedMovie();
+  Future<List<MoivePoster>> getTopRatedMovie(int page) async {
+    final result = await _movieListDataSource.getTopRatedMovie(
+      page,
+    );
     return result!
         .map(
           (e) => MoivePoster(
@@ -49,8 +54,10 @@ class MoviePosterRepositoryImpl
   }
 
   @override
-  Future<List<MoivePoster>> getUpcomingMovie() async {
-    final result = await _movieListDataSource.getUpcomingMovie();
+  Future<List<MoivePoster>> getUpcomingMovie(int page) async {
+    final result = await _movieListDataSource.getUpcomingMovie(
+      page,
+    );
     return result!
         .map(
           (e) => MoivePoster(

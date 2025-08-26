@@ -6,20 +6,20 @@ class FetchMoviePosterUsecase {
   FetchMoviePosterUsecase(this._moviePosterRepository);
   final MoviePosterRepository _moviePosterRepository;
 
-  Future<List<MoivePoster>?> getNowPlayingMovie() async {
-    return await _moviePosterRepository.getNowPlayingMovie();
+  Future<List<MoivePoster>?> getNowPlayingMovie(int page) async {
+    return await _moviePosterRepository.getNowPlayingMovie(page);
   }
 
-  Future<List<MoivePoster>?> getPopularMovie() async {
-    return await _moviePosterRepository.getPopularMovie();
+  Future<List<MoivePoster>?> getPopularMovie(int page) async {
+    return await _moviePosterRepository.getPopularMovie(page);
   }
 
-  Future<List<MoivePoster>?> getTopRatedMovie() async {
-    return await _moviePosterRepository.getTopRatedMovie();
+  Future<List<MoivePoster>?> getTopRatedMovie(int page) async {
+    return await _moviePosterRepository.getTopRatedMovie(page);
   }
 
-  Future<List<MoivePoster>?> getUpcomingMovie() async {
-    return await _moviePosterRepository.getUpcomingMovie();
+  Future<List<MoivePoster>?> getUpcomingMovie(int page) async {
+    return await _moviePosterRepository.getUpcomingMovie(page);
   }
 
   Future<MovieDetail?> getDetailMovie(int id) async {

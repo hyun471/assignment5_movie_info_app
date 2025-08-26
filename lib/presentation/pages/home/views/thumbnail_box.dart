@@ -49,23 +49,6 @@ class _ThumbnailBoxState extends State<ThumbnailBox> {
             borderRadius: BorderRadiusGeometry.circular(12),
             child: Image.network(
               'https://image.tmdb.org/t/p/w300${widget.state.posterPath}',
-              // frameBuilder:
-              //     (
-              //       context,
-              //       child,
-              //       frame,
-              //       wasSynchronouslyLoaded,
-              //     ) {
-              //       if (frame != null) {
-              //         WidgetsBinding.instance
-              //             .addPostFrameCallback((_) {
-              //               setState(() {
-              //                 isLoading = false;
-              //               });
-              //             });
-              //       }
-              //       return child;
-              //     },
             ),
           ),
         ),

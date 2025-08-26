@@ -7,15 +7,17 @@ import 'package:http/http.dart';
 
 class MovieListDataSourceImpl implements MovieListDataSource {
   // MovieListDataSourceImpl(this._movies);
-  final List<MoiveListDto> nowPlaying = [];
+
   Client client = Client();
 
   @override
-  Future<List<MoiveListDto>?> getNowPlayingMovie() async {
+  Future<List<MoiveListDto>?> getNowPlayingMovie(
+    int page,
+  ) async {
     String myKey = myTMDBKey;
     final response = await client.get(
       Uri.parse(
-        'https://api.themoviedb.org/3/movie/now_playing?api_key=$myKey&page=1',
+        'https://api.themoviedb.org/3/movie/now_playing?api_key=$myKey&page=$page',
       ),
     );
 
@@ -25,20 +27,19 @@ class MovieListDataSourceImpl implements MovieListDataSource {
       final iterable = movies.map((e) {
         return MoiveListDto.fromJson(e);
       });
-      final movieList = iterable.toList();
-      nowPlaying.addAll(movieList);
-      return nowPlaying;
+      final result = iterable.toList();
+      return result;
     }
     print(response.statusCode);
     return [];
   }
 
   @override
-  Future<List<MoiveListDto>?> getPopularMovie() async {
+  Future<List<MoiveListDto>?> getPopularMovie(int page) async {
     String myKey = myTMDBKey;
     final response = await client.get(
       Uri.parse(
-        'https://api.themoviedb.org/3/movie/popular?api_key=$myKey&page=1',
+        'https://api.themoviedb.org/3/movie/popular?api_key=$myKey&page=$page',
       ),
     );
 
@@ -48,19 +49,19 @@ class MovieListDataSourceImpl implements MovieListDataSource {
       final iterable = movies.map((e) {
         return MoiveListDto.fromJson(e);
       });
-      final movieList = iterable.toList();
-      return movieList;
+      final result = iterable.toList();
+      return result;
     }
     print(response.statusCode);
     return [];
   }
 
   @override
-  Future<List<MoiveListDto>?> getTopRatedMovie() async {
+  Future<List<MoiveListDto>?> getTopRatedMovie(int page) async {
     String myKey = myTMDBKey;
     final response = await client.get(
       Uri.parse(
-        'https://api.themoviedb.org/3/movie/top_rated?api_key=$myKey&page=1',
+        'https://api.themoviedb.org/3/movie/top_rated?api_key=$myKey&page=$page',
       ),
     );
 
@@ -70,19 +71,19 @@ class MovieListDataSourceImpl implements MovieListDataSource {
       final iterable = movies.map((e) {
         return MoiveListDto.fromJson(e);
       });
-      final movieList = iterable.toList();
-      return movieList;
+      final result = iterable.toList();
+      return result;
     }
     print(response.statusCode);
     return [];
   }
 
   @override
-  Future<List<MoiveListDto>?> getUpcomingMovie() async {
+  Future<List<MoiveListDto>?> getUpcomingMovie(int page) async {
     String myKey = myTMDBKey;
     final response = await client.get(
       Uri.parse(
-        'https://api.themoviedb.org/3/movie/upcoming?api_key=$myKey&page=1',
+        'https://api.themoviedb.org/3/movie/upcoming?api_key=$myKey&page=$page',
       ),
     );
 
@@ -92,8 +93,8 @@ class MovieListDataSourceImpl implements MovieListDataSource {
       final iterable = movies.map((e) {
         return MoiveListDto.fromJson(e);
       });
-      final movieList = iterable.toList();
-      return movieList;
+      final result = iterable.toList();
+      return result;
     }
     print(response.statusCode);
     return [];

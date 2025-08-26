@@ -9,13 +9,11 @@ class MovieList extends StatelessWidget {
     required this.thumbnailWidth,
     required this.state,
     required this.category,
-    required this.scrollController,
   });
   final double thumbnailHeight;
   final double thumbnailWidth;
   final List<MoivePoster> state;
   final String category;
-  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +22,6 @@ class MovieList extends StatelessWidget {
       height: thumbnailHeight,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        controller: scrollController,
-
         itemCount: state.length,
         itemBuilder: (context, index) {
           final movie = state[index];

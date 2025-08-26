@@ -1,13 +1,14 @@
+import 'package:assignment5_movie_info_app/data/dto/moive_list_dto.dart';
 import 'package:assignment5_movie_info_app/domain/entity/movie_poster.dart';
 import 'package:assignment5_movie_info_app/presentation/provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeState {
   HomeState({
-    this.nowPlaying = const [],
-    this.popular = const [],
-    this.topRated = const [],
-    this.upComing = const [],
+    required this.nowPlaying,
+    required this.popular,
+    required this.topRated,
+    required this.upComing,
   });
   List<MoivePoster> nowPlaying;
   List<MoivePoster> popular;
@@ -30,39 +31,57 @@ class HomeState {
 }
 
 class HomeViewModel extends Notifier<HomeState> {
+  // final List<MoivePoster> nowPlaying = [];
+  // final List<MoivePoster> popular = [];
+  // final List<MoivePoster> topRated = [];
+  // final List<MoivePoster> upComing = [];
+  int page = 1;
+
   @override
   HomeState build() {
-    Future.microtask(() {
-      fetchNowPlaying();
-      fetchPopular();
-      fetchTopRated();
-      fetchUpComing();
-    });
-    return HomeState();
+    fetchNowPlaying();
+    fetchPopular();
+    fetchTopRated();
+    fetchUpComing();
+    return HomeState(
+      nowPlaying: [],
+      popular: [],
+      topRated: [],
+      upComing: [],
+    );
   }
 
   Future<void> fetchNowPlaying() async {
-    final nowPlaying = ref.read(fetchMoviesUsecaseProvider);
-    final result = await nowPlaying.getNowPlayingMovie();
+    final nowPlayingRepo = ref.read(fetchMoviesUsecaseProvider);
+    final result = await nowPlayingRepo.getNowPlayingMovie(1);
     state = state.copyWith(nowPlaying: result);
   }
 
   Future<void> fetchPopular() async {
-    final popular = ref.read(fetchMoviesUsecaseProvider);
-    final result = await popular.getPopularMovie();
+    final popularRepo = ref.read(fetchMoviesUsecaseProvider);
+    final result = await popularRepo.getPopularMovie(1);
     state = state.copyWith(popular: result);
   }
 
   Future<void> fetchTopRated() async {
-    final topRated = ref.read(fetchMoviesUsecaseProvider);
-    final result = await topRated.getTopRatedMovie();
+    final topRatedRepo = ref.read(fetchMoviesUsecaseProvider);
+    final result = await topRatedRepo.getTopRatedMovie(1);
     state = state.copyWith(topRated: result);
   }
 
   Future<void> fetchUpComing() async {
-    final upComing = ref.read(fetchMoviesUsecaseProvider);
-    final result = await upComing.getUpcomingMovie();
+    final upComingRepo = ref.read(fetchMoviesUsecaseProvider);
+    final result = await upComingRepo.getUpcomingMovie(1);
     state = state.copyWith(upComing: result);
+  }
+
+  Future<void> fetchNewPopular() async {
+    page++;
+    final popularRepo = ref.read(fetchMoviesUsecaseProvider);
+    final result = await popularRepo.getPopularMovie(page);
+    state = state.copyWith(
+      popular: [...state.popular, ...result!],
+    );
   }
 }
 
