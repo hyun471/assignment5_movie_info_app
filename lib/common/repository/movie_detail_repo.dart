@@ -79,7 +79,6 @@
 // }
 
 import 'dart:convert';
-
 import 'package:assignment5_movie_info_app/common/models/movie_detail_model.dart';
 import 'package:assignment5_movie_info_app/common/models/secret.dart';
 import 'package:http/http.dart';

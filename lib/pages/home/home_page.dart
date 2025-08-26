@@ -1,5 +1,5 @@
-import 'package:assignment5_movie_info_app/pages/detail/detail_page.dart';
 import 'package:assignment5_movie_info_app/pages/home/view_model/home_view_model.dart';
+import 'package:assignment5_movie_info_app/pages/home/views/most_popular_movie.dart';
 import 'package:assignment5_movie_info_app/pages/home/views/movie_list.dart';
 import 'package:assignment5_movie_info_app/pages/home/views/thumbnail_box.dart';
 import 'package:flutter/material.dart';
@@ -12,19 +12,18 @@ class HomePage extends ConsumerStatefulWidget {
 
 class _HomePageState extends ConsumerState<HomePage> {
   double thumbnailHeight = 150;
-
   double thumbnailWidth = 100;
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.read(homeViewModelProvider);
+    final state = ref.watch(homeViewModelProvider);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(15),
         child:
-            state.nowPlaying.isEmpty &&
-                state.popular.isEmpty &&
-                state.topRated.isEmpty &&
+            state.nowPlaying.isEmpty ||
+                state.popular.isEmpty ||
+                state.topRated.isEmpty ||
                 state.upComing.isEmpty
             ? Center(child: CircularProgressIndicator())
             : ListView(
@@ -34,48 +33,22 @@ class _HomePageState extends ConsumerState<HomePage> {
                     children: [
                       // 가장 인기있는 영화
                       Text('가장 인기있는'),
-                      SizedBox(height: 5),
-                      GestureDetector(
-                        onTap: () {
-                          // TODO 나중에 수정
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DetailPage(),
-                            ),
-                          );
-                        },
-                        child: Hero(
-                          tag: state.popular.first.id,
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: 560,
-                            child: ClipRRect(
-                              borderRadius:
-                                  BorderRadiusGeometry.circular(
-                                    12,
-                                  ),
-                              child: Image.network(
-                                'https://image.tmdb.org/t/p/w300${state.popular.first.posterPath}',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      SizedBox(height: 10),
+                      MostPopular(state: state.popular.first),
                       // 현재 상영중인 영화 리스트
-                      SizedBox(height: 5),
+                      SizedBox(height: 10),
                       Text('현재 상영중'),
-                      SizedBox(height: 5),
+                      SizedBox(height: 10),
                       MovieList(
                         thumbnailHeight: thumbnailHeight,
                         thumbnailWidth: thumbnailWidth,
                         state: state.nowPlaying,
+                        category: '가장 인기있는',
                       ),
                       // 인기 있는 영화 리스트
-                      SizedBox(height: 5),
+                      SizedBox(height: 10),
                       Text('인기 순'),
-                      SizedBox(height: 5),
+                      SizedBox(height: 10),
                       SizedBox(
                         width: double.infinity,
                         height: thumbnailHeight,
@@ -99,6 +72,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                                               thumbnailWidth,
                                           state: state
                                               .popular[index],
+                                          categroy: '인기 순',
+                                          index: index,
                                         ),
                                       ),
                                       Positioned(
@@ -125,21 +100,23 @@ class _HomePageState extends ConsumerState<HomePage> {
                         ),
                       ),
                       // 평정 높은 영화 리스트
-                      SizedBox(height: 5),
+                      SizedBox(height: 10),
                       Text('평점 높은순'),
                       MovieList(
                         thumbnailHeight: thumbnailHeight,
                         thumbnailWidth: thumbnailWidth,
                         state: state.topRated,
+                        category: '평점 높은순',
                       ),
                       // 개봉 예정인 영화 리스트
-                      SizedBox(height: 5),
+                      SizedBox(height: 10),
                       Text('개봉예정'),
-                      SizedBox(height: 5),
+                      SizedBox(height: 10),
                       MovieList(
                         thumbnailHeight: thumbnailHeight,
                         thumbnailWidth: thumbnailWidth,
                         state: state.upComing,
+                        category: '개봉예정',
                       ),
                     ],
                   ),

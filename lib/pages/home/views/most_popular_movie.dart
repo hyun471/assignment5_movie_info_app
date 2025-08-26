@@ -3,28 +3,18 @@ import 'package:assignment5_movie_info_app/pages/detail/detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class ThumbnailBox extends StatefulWidget {
-  ThumbnailBox({
-    required this.thumbnailHeight,
-    required this.thumbnailWidth,
-    required this.state,
-    required this.categroy,
-    required this.index,
-  });
-  final double thumbnailHeight;
-  final double thumbnailWidth;
+class MostPopular extends StatefulWidget {
+  const MostPopular({super.key, required this.state});
+
   final MoivePosterModel state;
-  final String categroy;
-  final int index;
 
   @override
-  State<ThumbnailBox> createState() => _ThumbnailBoxState();
+  State<MostPopular> createState() => _MostPopularState();
 }
 
-class _ThumbnailBoxState extends State<ThumbnailBox> {
+class _MostPopularState extends State<MostPopular> {
   @override
   Widget build(BuildContext context) {
-    String tag = '${widget.categroy}: ${widget.index}';
     bool isLoading = true;
     return GestureDetector(
       onTap: () {
@@ -33,7 +23,7 @@ class _ThumbnailBoxState extends State<ThumbnailBox> {
           context,
           MaterialPageRoute(
             builder: (context) => DetailPage(
-              tag: tag,
+              tag: '가장 인기있는',
               id: widget.state.id,
               posterPath:
                   'https://image.tmdb.org/t/p/w300${widget.state.posterPath}',
@@ -42,15 +32,15 @@ class _ThumbnailBoxState extends State<ThumbnailBox> {
         );
       },
       child: Hero(
-        tag: tag,
+        tag: '가장 인기있는',
         child: SizedBox(
-          width: widget.thumbnailWidth,
-          height: widget.thumbnailHeight,
-
+          width: double.infinity,
+          height: 560,
           child: ClipRRect(
             borderRadius: BorderRadiusGeometry.circular(12),
             child: Image.network(
               'https://image.tmdb.org/t/p/w300${widget.state.posterPath}',
+              fit: BoxFit.cover,
               // frameBuilder:
               //     (
               //       context,

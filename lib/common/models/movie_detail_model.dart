@@ -92,6 +92,8 @@ class MovieDetailModel {
     required this.popularity,
     required this.revenue,
     required this.companies,
+    required this.posterPath,
+    required this.budget,
   });
   final String id;
   final String title;
@@ -105,6 +107,8 @@ class MovieDetailModel {
   final String popularity;
   final String revenue;
   final List<String> companies;
+  final String posterPath;
+  final String budget;
 
   MovieDetailModel.fromJson(Map<String, dynamic> map)
     : this(
@@ -117,15 +121,19 @@ class MovieDetailModel {
           (map['genres'] as List).map((g) => g['name']),
         ),
         overView: map['overview'],
+        budget: map['budget'].toString(),
+        posterPath: map['poster_path'],
         voteAverage: map['vote_average'].toString(),
         voteCount: map['vote_count'].toString(),
         popularity: map['popularity'].toString(),
         revenue: map['revenue'].toString(),
-        companies: List<String>.from(
-          (map['production_companies'] as List).map(
-            (g) => g['logo_path'],
-          ),
-        ),
+        companies: map['production_companies'] == null
+            ? []
+            : List<String>.from(
+                (map['production_companies'] as List).map(
+                  (g) => g['logo_path'] ?? '',
+                ),
+              ),
       );
 
   Map<String, dynamic> toJson() {
@@ -142,6 +150,8 @@ class MovieDetailModel {
       'popularity': popularity,
       'revenue': revenue,
       'production_companies': companies,
+      'poster_path': posterPath,
+      'budget': budget,
     };
   }
 }

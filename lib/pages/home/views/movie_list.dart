@@ -7,10 +7,13 @@ class MovieList extends StatelessWidget {
     required this.thumbnailHeight,
     required this.thumbnailWidth,
     required this.state,
+    required this.category,
   });
-  double thumbnailHeight;
-  double thumbnailWidth;
-  List<MoivePosterModel> state;
+  final double thumbnailHeight;
+  final double thumbnailWidth;
+  final List<MoivePosterModel> state;
+  final String category;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -26,6 +29,8 @@ class MovieList extends StatelessWidget {
                 thumbnailHeight: thumbnailHeight,
                 thumbnailWidth: thumbnailWidth,
                 state: state[index],
+                categroy: category,
+                index: index,
               ),
               index != state.length - 1
                   ? SizedBox(width: 10)
