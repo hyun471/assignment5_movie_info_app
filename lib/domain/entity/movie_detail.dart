@@ -1,3 +1,4 @@
+/// 디테일 페이지에서 사용될 정보에 대한 모델
 class MovieDetail {
   MovieDetail({
     required this.id,

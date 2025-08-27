@@ -2,6 +2,7 @@ import 'package:assignment5_movie_info_app/domain/entity/movie_poster.dart';
 import 'package:assignment5_movie_info_app/presentation/pages/home/views/thumbnail_box.dart';
 import 'package:flutter/material.dart';
 
+/// 영화 포스터 리스트 위젯
 class MovieList extends StatelessWidget {
   const MovieList({
     super.key,
@@ -12,7 +13,7 @@ class MovieList extends StatelessWidget {
   });
   final double thumbnailHeight;
   final double thumbnailWidth;
-  final List<MoivePoster> state;
+  final List<MoviePoster> state;
   final String category;
 
   @override

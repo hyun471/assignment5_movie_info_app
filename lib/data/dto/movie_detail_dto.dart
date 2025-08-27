@@ -6,6 +6,7 @@ MovieDetailDto movieDetailDtoFromJson(String str) =>
 String movieDetailDtoToJson(MovieDetailDto data) =>
     json.encode(data.toJson());
 
+/// API에서 불러오는 모든 데이터에 대한 모델
 class MovieDetailDto {
   bool adult;
   String backdropPath;

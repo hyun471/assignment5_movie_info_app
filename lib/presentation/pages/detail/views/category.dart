@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
+/// 장르 리스트 위젯
 class Category extends StatelessWidget {
   List<String> genres;
   Category({super.key, required this.genres});
@@ -32,7 +32,7 @@ class Category extends StatelessWidget {
   }
 }
 
-// ignore: must_be_immutable
+/// 장르 박스 위젯
 class CategoryBox extends StatelessWidget {
   String genres;
   CategoryBox({super.key, required this.genres});

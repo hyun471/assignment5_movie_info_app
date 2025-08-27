@@ -5,12 +5,12 @@ import 'package:assignment5_movie_info_app/data/dto/movie_detail_dto.dart';
 import 'package:assignment5_movie_info_app/data/secret.dart';
 import 'package:http/http.dart';
 
+/// 영화 데이터를 불러오는 구현체
 class MovieListDataSourceImpl implements MovieListDataSource {
-  // MovieListDataSourceImpl(this._movies);
-
   Client client = Client();
 
   @override
+  /// API에서 현재 상영중 영화 리스트 정보 받기
   Future<List<MoiveListDto>?> getNowPlayingMovie(
     int page,
   ) async {
@@ -35,6 +35,7 @@ class MovieListDataSourceImpl implements MovieListDataSource {
   }
 
   @override
+  /// API에서 인기순 영화 리스트 정보 받기
   Future<List<MoiveListDto>?> getPopularMovie(int page) async {
     String myKey = myTMDBKey;
     final response = await client.get(
@@ -57,6 +58,7 @@ class MovieListDataSourceImpl implements MovieListDataSource {
   }
 
   @override
+  /// API에서 평점 높은순 영화 리스트 정보 받기
   Future<List<MoiveListDto>?> getTopRatedMovie(int page) async {
     String myKey = myTMDBKey;
     final response = await client.get(
@@ -79,6 +81,7 @@ class MovieListDataSourceImpl implements MovieListDataSource {
   }
 
   @override
+  /// API에서 개봉예정 영화 리스트 정보 받기
   Future<List<MoiveListDto>?> getUpcomingMovie(int page) async {
     String myKey = myTMDBKey;
     final response = await client.get(
@@ -101,6 +104,7 @@ class MovieListDataSourceImpl implements MovieListDataSource {
   }
 
   @override
+  /// API에서 해당 영화 상세 정보 받기
   Future<MovieDetailDto?> getDetailMovie(int id) async {
     String myKey = myTMDBKey;
     final response = await client.get(

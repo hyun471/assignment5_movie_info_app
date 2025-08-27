@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// 디테일 페이지 구분선 위젯
 class Line extends StatelessWidget {
   const Line({super.key});
 

@@ -2,10 +2,11 @@ import 'package:assignment5_movie_info_app/domain/entity/movie_poster.dart';
 import 'package:assignment5_movie_info_app/presentation/pages/detail/detail_page.dart';
 import 'package:flutter/material.dart';
 
+/// 가장 인기있는 포스트 하나
 class MostPopular extends StatefulWidget {
   const MostPopular({super.key, required this.state});
 
-  final MoivePoster state;
+  final MoviePoster state;
 
   @override
   State<MostPopular> createState() => _MostPopularState();

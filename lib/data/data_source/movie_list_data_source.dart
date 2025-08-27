@@ -1,6 +1,7 @@
 import 'package:assignment5_movie_info_app/data/dto/moive_list_dto.dart';
 import 'package:assignment5_movie_info_app/data/dto/movie_detail_dto.dart';
 
+/// 영화 불러오는 API 참조 모델
 abstract interface class MovieListDataSource {
   Future<List<MoiveListDto>?> getNowPlayingMovie(int page);
   Future<List<MoiveListDto>?> getPopularMovie(int page);

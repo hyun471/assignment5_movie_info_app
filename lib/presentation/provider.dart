@@ -5,6 +5,7 @@ import 'package:assignment5_movie_info_app/domain/repository/movie_poster_reposi
 import 'package:assignment5_movie_info_app/domain/usecase/fetch_movie_poster_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+/// 모든 참조와 구현체를 이어주는 장치
 final _movieDataSourceProvider = Provider<MovieListDataSource>((
   ref,
 ) {

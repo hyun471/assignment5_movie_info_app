@@ -3,19 +3,20 @@ import 'package:assignment5_movie_info_app/domain/entity/movie_detail.dart';
 import 'package:assignment5_movie_info_app/domain/entity/movie_poster.dart';
 import 'package:assignment5_movie_info_app/domain/repository/movie_poster_repository.dart';
 
+/// 불러온 API 정보를 필요한 정보만 가공하는 구현체
 class MoviePosterRepositoryImpl
     implements MoviePosterRepository {
   MoviePosterRepositoryImpl(this._movieListDataSource);
   final MovieListDataSource _movieListDataSource;
 
   @override
-  Future<List<MoivePoster>> getNowPlayingMovie(int page) async {
+  Future<List<MoviePoster>> getNowPlayingMovie(int page) async {
     final result = await _movieListDataSource.getNowPlayingMovie(
       page,
     );
     return result!
         .map(
-          (e) => MoivePoster(
+          (e) => MoviePoster(
             id: e.id.toString(),
             posterPath: e.posterPath,
           ),
@@ -24,13 +25,13 @@ class MoviePosterRepositoryImpl
   }
 
   @override
-  Future<List<MoivePoster>> getPopularMovie(int page) async {
+  Future<List<MoviePoster>> getPopularMovie(int page) async {
     final result = await _movieListDataSource.getPopularMovie(
       page,
     );
     return result!
         .map(
-          (e) => MoivePoster(
+          (e) => MoviePoster(
             id: e.id.toString(),
             posterPath: e.posterPath,
           ),
@@ -39,13 +40,13 @@ class MoviePosterRepositoryImpl
   }
 
   @override
-  Future<List<MoivePoster>> getTopRatedMovie(int page) async {
+  Future<List<MoviePoster>> getTopRatedMovie(int page) async {
     final result = await _movieListDataSource.getTopRatedMovie(
       page,
     );
     return result!
         .map(
-          (e) => MoivePoster(
+          (e) => MoviePoster(
             id: e.id.toString(),
             posterPath: e.posterPath,
           ),
@@ -54,13 +55,13 @@ class MoviePosterRepositoryImpl
   }
 
   @override
-  Future<List<MoivePoster>> getUpcomingMovie(int page) async {
+  Future<List<MoviePoster>> getUpcomingMovie(int page) async {
     final result = await _movieListDataSource.getUpcomingMovie(
       page,
     );
     return result!
         .map(
-          (e) => MoivePoster(
+          (e) => MoviePoster(
             id: e.id.toString(),
             posterPath: e.posterPath,
           ),

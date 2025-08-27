@@ -1,7 +1,7 @@
 import 'package:assignment5_movie_info_app/domain/entity/movie_detail.dart';
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
+/// 흥행 정보를 나타내는 리스트
 class BoxOfficeInfo extends StatelessWidget {
   MovieDetail state;
   BoxOfficeInfo({super.key, required this.state});
@@ -29,7 +29,7 @@ class BoxOfficeInfo extends StatelessWidget {
   }
 }
 
-// ignore: must_be_immutable
+/// 흥행 정보 박스
 class Box extends StatelessWidget {
   String score;
   String officeInfo;

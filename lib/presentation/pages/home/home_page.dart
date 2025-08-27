@@ -104,6 +104,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 }
 
+/// 인기순 리스트 위젯
 class PopularWidget extends StatelessWidget {
   const PopularWidget({
     super.key,

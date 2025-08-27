@@ -1,3 +1,4 @@
+/// API에서 불러오는 모든 데이터에 대한 모델
 class MoiveListDto {
   final bool adult;
   final String? backdropPath;

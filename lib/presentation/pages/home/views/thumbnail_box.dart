@@ -2,6 +2,7 @@ import 'package:assignment5_movie_info_app/domain/entity/movie_poster.dart';
 import 'package:assignment5_movie_info_app/presentation/pages/detail/detail_page.dart';
 import 'package:flutter/material.dart';
 
+/// 작은 영화 포스터 썸네일 박스 위젯
 class ThumbnailBox extends StatefulWidget {
   const ThumbnailBox({
     super.key,
@@ -13,7 +14,7 @@ class ThumbnailBox extends StatefulWidget {
   });
   final double thumbnailHeight;
   final double thumbnailWidth;
-  final MoivePoster state;
+  final MoviePoster state;
   final String categroy;
   final int index;
 

@@ -95,45 +95,7 @@ class DetailPage extends ConsumerWidget {
                       SizedBox(height: 10),
                       BoxOfficeInfo(state: state.movieDetail!),
                       SizedBox(height: 20),
-                      SizedBox(
-                        height: 80,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: state
-                              .movieDetail!
-                              .companies
-                              .length,
-                          itemBuilder: (context, index) {
-                            if (state
-                                .movieDetail!
-                                .companies[index]
-                                .isEmpty) {
-                              return SizedBox.square();
-                            }
-                            return Row(
-                              children: [
-                                Container(
-                                  height: 80,
-                                  color: Colors.grey[300],
-                                  padding: EdgeInsets.all(15),
-                                  child: Image.network(
-                                    'https://image.tmdb.org/t/p/original${state.movieDetail!.companies[index]}',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                index ==
-                                        state
-                                                .movieDetail!
-                                                .companies
-                                                .length -
-                                            1
-                                    ? SizedBox.shrink()
-                                    : SizedBox(width: 10),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
+                      CompaniesLogo(state: state),
                     ],
                   ),
                 ),
@@ -141,6 +103,45 @@ class DetailPage extends ConsumerWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// 제작사 회사 로고 박스 위젯
+class CompaniesLogo extends StatelessWidget {
+  const CompaniesLogo({super.key, required this.state});
+
+  final DetailState state;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 80,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: state.movieDetail!.companies.length,
+        itemBuilder: (context, index) {
+          if (state.movieDetail!.companies[index].isEmpty) {
+            return SizedBox.square();
+          }
+          return Row(
+            children: [
+              Container(
+                height: 80,
+                color: Colors.grey[300],
+                padding: EdgeInsets.all(15),
+                child: Image.network(
+                  'https://image.tmdb.org/t/p/original${state.movieDetail!.companies[index]}',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              index == state.movieDetail!.companies.length - 1
+                  ? SizedBox.shrink()
+                  : SizedBox(width: 10),
+            ],
+          );
+        },
       ),
     );
   }
