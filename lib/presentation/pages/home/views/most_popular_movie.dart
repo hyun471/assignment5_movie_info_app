@@ -38,23 +38,6 @@ class _MostPopularState extends State<MostPopular> {
             child: Image.network(
               'https://image.tmdb.org/t/p/w300${widget.state.posterPath}',
               fit: BoxFit.cover,
-              // frameBuilder:
-              //     (
-              //       context,
-              //       child,
-              //       frame,
-              //       wasSynchronouslyLoaded,
-              //     ) {
-              //       if (frame != null) {
-              //         WidgetsBinding.instance
-              //             .addPostFrameCallback((_) {
-              //               setState(() {
-              //                 isLoading = false;
-              //               });
-              //             });
-              //       }
-              //       return child;
-              //     },
             ),
           ),
         ),

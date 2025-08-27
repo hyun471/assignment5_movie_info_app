@@ -156,7 +156,7 @@ class PopularWidget extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        left: -5,
+                        left: 0,
                         bottom: -15,
                         child: Text(
                           '${index + 1}',
